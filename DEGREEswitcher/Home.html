@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="nav.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  
+  <title>DEGREEswitcher.com</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Exo', sans-serif;
+    }
+
+    .navbar {
+      background-color: #151638;
+      color: #fff;
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: bold;
+      position: relative;
+      top: auto;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      overflow: hidden;
+      border-bottom: 2px solid transparent;
+      animation: moveBorder 2s infinite linear;
+      border-bottom: none;
+      animation: none;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .navbar::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: #0f0;
+      transform: translateX(-100%);
+      animation: moveLight 2s infinite linear;
+    }
+
+    .navbar-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-left: auto;
+    }
+
+    .navbar span {
+      animation: colorChange 4s infinite;
+    }
+
+    .navbar h6 {
+      font-size: 12px;
+      color: #fff;
+      margin-top: 5px;
+      text-align: center;
+      width: 80%;
+    }
+
+    .navbar:hover span,
+    .navbar:hover h6 {
+      color: #11871C;
+    }
+
+    @keyframes colorChange {
+
+      0%,
+      20% {
+        color: rgba(255, 78, 80, 0.8);
+      }
+
+      40%,
+      60% {
+        color: rgba(255, 159, 67, 0.8);
+      }
+
+      80%,
+      100% {
+        color: rgba(205, 132, 241, 0.8);
+      }
+    }
+
+    @keyframes moveBorder {
+      0% {
+        border-color: transparent;
+      }
+
+      50% {
+        border-color: #0f0;
+      }
+
+      100% {
+        border-color: transparent;
+      }
+    }
+
+    @keyframes moveLight {
+      0% {
+        transform: translateX(-100%);
+      }
+
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    .container {
+      margin-top: 10vh;
+      text-align: center;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .navbar {
+        font-size: 18px;
+      }
+
+      .navbar h6 {
+        font-size: 10px;
+      }
+    }
+
+    #logo-container {
+      display: flex;
+      align-items: center;
+      margin-right: 10px;
+    }
+
+    #logo {
+      height: 100%;
+      max-height: 50px;
+      animation: logoColorChange 8s infinite;
+    }
+
+    @keyframes logoColorChange {
+
+      0%,
+      20% {
+        filter: hue-rotate(0deg);
+      }
+
+      40% {
+        filter: hue-rotate(60deg);
+      }
+
+      60% {
+        filter: hue-rotate(120deg);
+      }
+
+      80% {
+        filter: hue-rotate(180deg);
+      }
+
+      100% {
+        filter: hue-rotate(240deg);
+      }
+    }
+
+    ul {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin: 0;
+      padding: 20px 0;
+      background: #004e92;
+      display: flex;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+      width: 100%;
+      max-width: 600px;
+    }
+
+    ul li {
+      flex-grow: 1;
+      list-style: none;
+      text-align: center;
+      display: block;
+      border-right: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    ul li:last-child {
+      border-right: none;
+    }
+
+    ul li a {
+      text-decoration: none;
+      padding: 0 10px;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    ul li a .icon {
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      overflow: hidden;
+      margin: 0 auto 10px;
+    }
+
+    ul li a .icon .fa {
+      width: 100%;
+      height: 100%;
+      line-height: 40px;
+      font-size: 34px;
+      transition: 0.5s;
+      color: #000;
+    }
+
+    ul li a .icon .fa:last-child {
+      color: green;
+    }
+
+    ul li a:hover .icon .fa {
+      transform: translateY(-100%);
+    }
+
+    ul li a .name {
+      position: relative;
+      height: 20px;
+      width: 100%;
+      display: block;
+      overflow: hidden;
+    }
+
+    ul li a .name span {
+      display: block;
+      position: relative;
+      color: #000;
+      font-size: 18px;
+      line-height: 20px;
+      transition: 0.5s;
+    }
+
+    ul li a .name span:before {
+      content: attr(data-text);
+      position: absolute;
+      top: -100%;
+      width: 100%;
+      left: 0;
+      height: 100%;
+      color: green;
+    }
+
+    ul li a:hover .name span {
+      transform: translateY(20px);
+    }
+
+    /* Media queries for responsive design */
+    @media (max-width: 768px) {
+      ul li a {
+        padding: 0 5px;
+      }
+    }
+
+    .navbar-spacing {
+      margin-bottom:70px;
+    }
+
+   input[type="submit"],
+    .a1 {
+      background-color: #c2fbd7;
+      border-radius: 100px;
+      box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px;
+      color: green;
+      cursor: pointer;
+      display: inline-block;
+      font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+      padding: 7px 20px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 250ms;
+      border: 0;
+      font-size: 16px;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    input[type="submit"]:hover,
+    .a1:hover {
+      box-shadow: rgba(44, 187, 99, .35) 0 -25px 18px -14px inset, rgba(44, 187, 99, .25) 0 1px 2px, rgba(44, 187, 99, .25) 0 2px 4px, rgba(44, 187, 99, .25) 0 4px 8px, rgba(44, 187, 99, .25) 0 8px 16px, rgba(44, 187, 99, .25) 0 16px 32px;
+      background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+      transform: scale(1.05) rotate(-1deg);
+    }
+
+    .card-container {
+      margin-top: 95px; /* Adjust as needed */
+    }
+
+    .nav {
+      background-color: #000;
+      color: rgba(255, 255, 255, 1);
+      letter-spacing: 2px;
+      font-weight: bold;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      padding: 10px;
+      text-align: center;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    }
+  </style>
+  <!-- Add any external stylesheets or resources here -->
+</head>
+
+<body bgcolor="#f2c072">
+  <nav class="navbar">
+    <div id="logo-container">
+      <img src="logo.png" id="logo" alt="Logo" width="120%" height="120%">
+    </div>
+    <div class="navbar-content">
+      <span>Welcome to Degree<small><sub>switcher.com</sub></small></span>
+      <h6>A user-friendly web application that simplifies temperature conversion, offering a comprehensive set of tools for converting Celsius to Fahrenheit, Fahrenheit to Celsius, and other temperature units.</h6>
+    </div>
+  </nav>
+  <div class="navbar-spacing"></div>
+  <div>
+  <ul>
+    <li>
+      <a href="#">
+        <div class="icon">
+          <i class="fa fa-home" aria-hidden="true"></i>
+          <i class="fa fa-home" aria-hidden="true"></i>
+        </div>
+        <div class="name"><span data-text="Home">Home</span></div>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <div class="icon">
+          <i class="fa fa-file" aria-hidden="true"></i>
+          <i class="fa fa-file" aria-hidden="true"></i>
+        </div>
+        <div class="name"><span data-text="AboutUs">AboutUs</span></div>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <div class="icon">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </div>
+        <div class="name"><span data-text="ContactUs">ContactUs</span></div>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <div class="icon">
+          <i class="fa fa-question-circle" aria-hidden="true"></i>
+          <i class="fa fa-question-circle" aria-hidden="true"></i>
+        </div>
+        <div class="name"><span data-text="Feedback">Feedback</span></div>
+      </a>
+    </li>
+  </ul>
+  </div>
+
+  <!--Card 1-->
+  <div class="card-container p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-2 w-full">
+
+    <div class="rounded overflow-hidden shadow-lg">
+      <img class="" src="cel_to_fah.png"
+        style="height:180px; width:100%; border: 3px solid #000000;" alt="Mountain">
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2">Celsius To Fahrenheit</div>
+        <p class="text-blue-700 text-base">
+       Effortlessly convert <b>Celsius</b> to <b>Fahrenheit</b> with precision.
+        </p>
+      </div>
+      <div class="px-6 pt-4 pb-2">
+        <form action="Cel_To_Fah.html" method="POST">
+          <input type="submit" value="Convert" style="font-weight:bold;" />
+        </form>
+      </div>
+    </div>
+
+
+    <!--Card 2-->
+    <div class="rounded overflow-hidden shadow-lg">
+      <img class="" src="fah_to_cel.png"
+        style="height:180px; width:100%; border: 3px solid #000000;" alt="Mountain">
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2">Fahrenheit To Celsius</div>
+        <p class="text-blue-700 text-base">
+         Seamlessly convert <b>Fahrenheit</b> to <b>Celsius</b> with precision.
+        </p>
+      </div>
+      <div class="px-6 pt-4 pb-2">
+        <form action="Fah_To_Cel.html" method="POST">
+          <input type="submit" value="Convert" style="font-weight:bold;" />
+        </form>
+      </div>
+    </div>
+
+
+   <!--Card 3-->
+    <div class="rounded overflow-hidden shadow-lg">
+      <img class="" src="cel_to_kel.png"
+        style="height:180px; width:100%; border: 3px solid #000000;" alt="Mountain">
+      <div class="px-6 py-4">
+     <div class="font-bold text-xl mb-2">Celsius To Kelvin</div>
+        <p class="text-blue-700 text-base">
+         Swiftly convert <b>Celsius</b> to <b>Kelvin</b> with precision.
+        </p>
+      </div>
+      <div class="px-6 pt-4 pb-2">
+        <form action="Cel_To_Kel.html" method="POST">
+          <input type="submit" value="Convert" style="font-weight:bold;" />
+        </form>
+      </div>
+    </div>
+
+
+   <!--Card 4-->
+    <div class="rounded overflow-hidden shadow-lg">
+      <img class="" src="kel_to_cel.png"
+        style="height:180px; width:100%; border: 3px solid #000000;" alt="Mountain">
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2">Kelvin To Celsius</div>
+        <p class="text-blue-700 text-base">
+           Simply convert <b>Kelvin</b> to <b>Celsius</b> with precision.
+        </p>
+      </div>
+      <div class="px-6 pt-4 pb-2">
+        <form action="Kel_To_Cel.html" method="POST">
+          <input type="submit" value="Convert" style="font-weight:bold;" />
+        </form>
+      </div>
+    </div>
+</div>
+  <div class="nav">
+    <h5>&copy; Copyright 2023 by DEGREEswitcher.</h5>
+    <h6>All Rights Reserved.</h6>
+  </div>
+  </div>
+</body>
+
+</html>
